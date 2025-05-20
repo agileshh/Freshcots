@@ -104,7 +104,7 @@ public class Login extends Baseclass
 	  login = new LoginPage(driver);
 	  login.loginemail("Agileshsakthi@gmail.com");
 	  login.sendotpbutton();
-	  String otp = "1234";
+	  String otp = "1874";
 	  login.enterOTP(otp);
   }    
   

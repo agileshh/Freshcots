@@ -32,8 +32,8 @@ public class Generic
 	  {
 	   WebDriverWait waitish = new WebDriverWait(driver, Duration.ofSeconds(wait));
 	   waitish.until(ExpectedConditions.visibilityOf(element));
-	   element.sendKeys(Keys.CONTROL + "a");
-	   element.sendKeys(Keys.DELETE);
+	   //element.sendKeys(Keys.CONTROL + "a");
+	   //element.sendKeys(Keys.DELETE);
 	   element.sendKeys(text);
 	  }  
 	  catch  (Exception e) 
@@ -52,13 +52,16 @@ public class Generic
 			for(int i =0;i<6;i++)
 			{
 				element.click();
-			}
-			
+			}			
 		}
-		catch(Exception e)
-		{
+		catch(Exception e){
 			System.out.println("Exception while clicking on element: " + element.toString());
 	        e.printStackTrace();
 		}
 	}
+	
+	public static void isdisplayed()
+    {
+		
+    }
 }
