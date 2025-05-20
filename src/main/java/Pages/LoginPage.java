@@ -22,17 +22,16 @@ public class LoginPage extends Generic
    @FindBy(xpath = "//button[normalize-space()='Login']")
    WebElement Homeloginbuttonpage;
    
-   @FindBy(xpath =  "//input[@type ='email']")
+   @FindBy(xpath="//input[@type ='email']")
    //@FindBy(xpath = "//input[@id=':r19:']")  
    WebElement loginemailpage;
    
-   @FindBy(xpath = "//button[normalize-space()='Send OTP']")
+   @FindBy(xpath="//button[normalize-space()='Send OTP']")
    WebElement sendotpbuttonpage;
    
    @FindBy(xpath = "//a[normalize-space()='Register']")
    WebElement registerbuttonloginpage;
    
-   //@FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 cursor-pointer css-kx2ky3']")
    @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 cursor-pointer css-kx2ky3']")
    WebElement Editmailidbuttonpage;
    
@@ -97,5 +96,11 @@ public class LoginPage extends Generic
    {
 	   Generic.ContinuosClick(submitbuttonpage, 5);;
    }
+   
+   public void ValidOTP()
+   {
+	   Generic.Click(submitbuttonpage, 5);
+   }
 }
+
 
