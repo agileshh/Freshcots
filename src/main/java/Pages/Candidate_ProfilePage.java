@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,7 +21,7 @@ public class Candidate_ProfilePage extends Generic
 	@FindBy(xpath = "//button[normalize-space()='View Profile']")
 	WebElement Viewprofile_buttonPage;
 	
-	@FindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-524qx0']//*[name()='svg']")
+	@FindBy(xpath = "(//button[contains(@class, 'MuiButtonBase-root MuiIconButton-root')])[3]")
 	WebElement Clickuploadpicpage;
 	
 	@FindBy(xpath = "//button[normalize-space()='Use Camera']")
@@ -270,22 +271,28 @@ public class Candidate_ProfilePage extends Generic
     
     public void Uploadpic()
     {
-    	Generic.Click(Clickuploadpicpage, 0);
+    	 JavascriptExecutor js = (JavascriptExecutor) driver;
+    	((JavascriptExecutor) driver).executeScript("arguments[0].click();", Clickuploadpicpage);
+    	//Generic.Click(Clickuploadpicpage, 10);
     }
     
     public void Usecamara()
     {
-    	Generic.Click(Clickusecamarapage, 0);
+    	Generic.Click(Clickusecamarapage, 10);
     }
     
     public void Takepic()
     {
-    	Generic.Click(Takepicpage, 0);
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    	wait.until(ExpectedConditions.elementToBeClickable(Takepicpage));
+    	Generic.Click(Takepicpage, 20);
     }
     
     public void savepicbutton()
     {
-    	Generic.Click(savepicbuttonpage, 0);
+    	JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", savepicbuttonpage);
+        js.executeScript("arguments[0].click();", savepicbuttonpage);
     }
     
     public void record_selfintro_button()
@@ -305,6 +312,8 @@ public class Candidate_ProfilePage extends Generic
     
     public void submitforreviewbutton()
     {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	wait.until(ExpectedConditions.elementToBeClickable(submitforreviewbuttonpage));
     	Generic.Click(submitforreviewbuttonpage, 0);
     }
     
@@ -343,8 +352,7 @@ public class Candidate_ProfilePage extends Generic
     
     public void addprofile_text_area(String sent)
     {
-    	//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	//wait.until(ExpectedConditions.visibilityOf(addprofile_text_area_page));
+   
     	Generic.sendkeys(addprofile_text_area_page, sent, 10);
     }
     

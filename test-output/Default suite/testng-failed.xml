@@ -5,8 +5,9 @@
     <classes>
       <class name="Test.Candidate_Profile">
         <methods>
-          <include name="Experience"/>
+          <include name="cleanUp"/>
           <include name="setup"/>
+          <include name="Project"/>
         </methods>
       </class> <!-- Test.Candidate_Profile -->
     </classes>
