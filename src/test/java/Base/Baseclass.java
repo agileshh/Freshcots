@@ -8,15 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+
 public class Baseclass 
 {
    public WebDriver driver;
    public Properties prop;
+   public Logger loggers;
 
 public void loadproperties() throws IOException
    {
@@ -33,10 +37,15 @@ public void loadproperties() throws IOException
    
    public WebDriver Initializebrowser(String browser) throws IOException 
    {
-	    Map<String, Object> prefs = new HashMap<>();
-	    prefs.put("profile.default_content_setting_values.media_stream_camera", 1); // 1 = Allow
-        prefs.put("profile.default_content_setting_values.media_stream_mic", 1);    // 1 = Allow
+	   //loggers= LogManager.getLogger(this.getClass());
+			   
+	   Map<String, Object> prefs = new HashMap<>();
+       prefs.put("profile.default_content_setting_values.media_stream_camera", 1);
+       prefs.put("profile.default_content_setting_values.media_stream_mic", 1);
+       prefs.put("profile.default_content_setting_values.notifications", 2);
+       
 	    ChromeOptions options = new ChromeOptions();
+	    options.addArguments("--use-fake-ui-for-media-stream");
 	    options.setExperimentalOption("prefs", prefs);
 
 	    if (browser.equalsIgnoreCase("chrome"))

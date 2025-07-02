@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +24,6 @@ public class LoginPage extends Generic
    WebElement Homeloginbuttonpage;
    
    @FindBy(xpath="//input[@type ='email']")
-   //@FindBy(xpath = "//input[@id=':r19:']")  
    WebElement loginemailpage;
    
    @FindBy(xpath="//button[normalize-space()='Send OTP']")
@@ -40,6 +40,24 @@ public class LoginPage extends Generic
 
    @FindBy(xpath = "//button[normalize-space()='Submit']")
    WebElement submitbuttonpage;
+   
+   @FindBy(xpath = "//p[text() = 'Please enter a valid email id']")
+   WebElement WarningmsgEmail_page;
+   
+   @FindBy(xpath = "//p[text() = 'Edit']")
+   WebElement EditbuttonOTP_page;
+   
+   @FindBy(xpath = "//button[normalize-space()='Contact admin']")
+   WebElement ContactAdmin_page;
+   
+   @FindBy(xpath = "//button[@id='demo-customized-button']")
+   WebElement RegisterpageVerify_page;
+   
+   @FindBy(xpath = "//button[normalize-space()='Logout']")
+   WebElement Logout_button_page;
+   
+   @FindBy(xpath = "(//*[normalize-space() = 'Logout'])[2]")
+   WebElement Logout_Popup_page;
    
    //Constructor
    public LoginPage(WebDriver driver)
@@ -74,9 +92,9 @@ public class LoginPage extends Generic
 	   Generic.Click(registerbuttonloginpage, 0);
    }
    
-   public void Editmailidbutton()
+   public void EditbuttonOTPClick()
    {
-	   Generic.Click(Editmailidbuttonpage, 0);
+	   Generic.Click(EditbuttonOTP_page, 0);
    }
    
    public void loginemail_Invalid(String sent)
@@ -101,6 +119,49 @@ public class LoginPage extends Generic
    {
 	   Generic.Click(submitbuttonpage, 5);
    }
+   
+   public String WarningmsgEmail()
+   {
+	return WarningmsgEmail_page.getText();	   
+   }
+   
+   public boolean EditbuttonOTP()
+   {
+	return EditbuttonOTP_page.isDisplayed();	   
+   }
+   
+   public void ContactAdminAction()
+   {
+	   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       wait.until(ExpectedConditions.elementToBeClickable(ContactAdmin_page));
+   	   Generic.Click(ContactAdmin_page, 10);
+   }
+   
+   public boolean ContactAdminActionVerify()
+   {
+	   return ContactAdmin_page.isDisplayed();
+   }
+   
+   public boolean RegisterpageVerify_page()
+   {
+	   return RegisterpageVerify_page.isDisplayed();
+   }
+   
+   public void Logout_button()
+   {
+	   JavascriptExecutor js = (JavascriptExecutor) driver;
+       js.executeScript("arguments[0].scrollIntoView(true);", Logout_button_page);
+       js.executeScript("arguments[0].click();", Logout_button_page);
+   }
+   
+   public void Logout_Popup()
+   {
+	   JavascriptExecutor js = (JavascriptExecutor) driver;
+       js.executeScript("arguments[0].scrollIntoView(true);", Logout_Popup_page);
+       js.executeScript("arguments[0].click();", Logout_Popup_page);
+   }
 }
+
+
 
 

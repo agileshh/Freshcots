@@ -3,6 +3,7 @@ package Pages;
 import java.time.Duration;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import Utills.Generic;
 
@@ -33,8 +35,17 @@ public class Candidate_ProfilePage extends Generic
 	@FindBy(xpath = "//button[normalize-space()='Upload Photo']")
 	WebElement uploadpicpage;
 	
+	@FindBy(xpath = "(//button[@class= 'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-xz9haa'])[2]")
+	WebElement Dp_Cancelpage;
+	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement savepicbuttonpage;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement dp_Percentagecompletion_page;
+	
+	@FindBy(xpath = "//button[normalize-space()='Change Photo']")
+	WebElement Changephotopage;
 	
 	@FindBy(xpath = "//button[normalize-space()='Record Now']")
 	WebElement recordnowbuttonpage;
@@ -57,11 +68,17 @@ public class Candidate_ProfilePage extends Generic
 	@FindBy(xpath = "//button[normalize-space()='view video']")
 	WebElement viewvideobuttonpage;
 	
-	@FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-13txczy']")
+	@FindBy(xpath = "//div[@class = 'MuiBox-root css-1ext2y6']")
+	WebElement viewvideocanceliconpage;
+	
+	@FindBy(xpath = "//p[text() = 'Under review']")
 	WebElement Underreviewtextpage;
 	
-	@FindBy(xpath = "//span[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'][normalize-space()='10%']")
-	WebElement Percentage_bar_page;
+	@FindBy(xpath = "//p[text() = 'Approved']")
+	WebElement Approvedtextpage;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement Selfintro_Percentagecompletion_page;
 	
 	@FindBy(xpath = "//button[normalize-space()='Add Profile Summary']")
 	WebElement Addprofile_button_page;
@@ -71,6 +88,18 @@ public class Candidate_ProfilePage extends Generic
 	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement addprofile_savebutton_page;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement profile_Percentagecompletion_page;
+	
+	@FindBy(xpath = "(//div[@class='cursor-pointer'])[1]")
+	WebElement Profile_Edit_Icon_page;
+	
+	@FindBy(xpath = "//button[@class = 'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-xz9haa']")
+	WebElement Profile_EditCancel_Icon_page;
+	
+	@FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-GrayBodytext1 css-gil8bc']")
+	WebElement Profile_GetText_page;
 	
 	@FindBy(xpath = "//button[normalize-space()='Add Interest']")
 	WebElement add_AreaofIntrestButton_page;
@@ -89,6 +118,9 @@ public class Candidate_ProfilePage extends Generic
 	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement add_AreaofIntrest_savebutton_page;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement AreaofIntrest_Percentagecompletion_page;
 	
 	@FindBy(xpath = "//button[normalize-space()='Add Identification']")
 	WebElement Add_Identificationbutton_page;
@@ -128,6 +160,9 @@ public class Candidate_ProfilePage extends Generic
 	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement Savebutton_page;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement Identification_Percentagecompletion_page;
 	
 	@FindBy(xpath = "//button[normalize-space()='Add Education']")
 	WebElement Add_Education_button_page ;
@@ -186,7 +221,6 @@ public class Candidate_ProfilePage extends Generic
 	@FindBy(xpath = "//li[@class = 'MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-5llfx1' and @data-value= '2017' ]")
 	WebElement To_year_option_page;
 	
-	
 	@FindBy(xpath = "//input[@value='Part-time']")
 	WebElement Course_type_page;
 	
@@ -195,6 +229,18 @@ public class Candidate_ProfilePage extends Generic
 	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement Save_button_Education_page;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement Education_Percentagecompletion_page;
+	
+	@FindBy(xpath = "(//div[@class = 'cursor-pointer'])[4]")
+	WebElement Editbutton_page;
+	
+	@FindBy(xpath = "(//span[@class = 'MuiButton-icon MuiButton-endIcon MuiButton-iconSizeMedium css-1g78ho2'])[1]")
+	WebElement Addmore_Edu_button_page;
+	
+	@FindBy(xpath = "(//button[@class = 'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-mfslm7'])[3]")
+	WebElement Delete_Edu_button_page;
 	
 	@FindBy(xpath = "//button[normalize-space()='Add Skills']")
 	WebElement Addskill_button_page;
@@ -218,7 +264,13 @@ public class Candidate_ProfilePage extends Generic
 	WebElement Skills_secondaryskill_dropdown_page;
 	
 	@FindBy(xpath = "//li[text() = 'C#']")
-	WebElement Skills_secondaryskill_option_page;
+	WebElement Skills_secondaryskill_option1_page;
+	
+	@FindBy(xpath = "//li[text() = 'Java']")
+	WebElement Skills_secondaryskill_option2_page;
+	
+	@FindBy(xpath = "(//p[contains(@class , 'MuiFormHelperText-root Mui-error MuiFormHelperText-sizeSmall MuiFormHelperText-contained')])[2]")
+	WebElement Skill_warning_message_page;
 	
 	@FindBy(xpath = "//div[5]//div[2]//div[1]//div[1]//div[1]//div[1]//button[5]")
 	WebElement Skills_primaryrating_page;
@@ -235,6 +287,12 @@ public class Candidate_ProfilePage extends Generic
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement Skills_savebutton_page;
 	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement Skill_Percentagecompletion_page;
+	
+	@FindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bglhl2']//div[@class='MuiBox-root css-0']//div[@class='MuiCardContent-root css-15q2cw4']//div[@class='cursor-pointer']//*[name()='svg']")
+	WebElement Skill_Editbutton_page;
+	
 	@FindBy(xpath = "//button[normalize-space()='Add Career Info']")
 	WebElement AddcareerInfo_button_page;
 	
@@ -242,7 +300,10 @@ public class Candidate_ProfilePage extends Generic
 	WebElement CareerInfo_Availabilitydropdown_page;
 	
 	@FindBy(xpath = "//li[@id='availability-option-0']")
-	WebElement CareerInfo_Availabilityoption_page;
+	WebElement CareerInfo_Availabilityoption_page1;
+	
+	@FindBy(xpath = "//li[@id='availability-option-1']")
+	WebElement CareerInfo_Availabilityoption_page2;
 	
 	@FindBy(xpath = "//input[@id='preferred-locations']")
 	WebElement CareerInfo_loactiondropdown_page;
@@ -255,6 +316,13 @@ public class Candidate_ProfilePage extends Generic
 	
 	@FindBy(xpath = "//button[normalize-space()='Save']")
 	WebElement CareerInfo_savebutton_page;
+	
+	@FindBy(xpath = "//body/div[@id='root']/div[@class='MuiBox-root css-0']/div[@class='MuiContainer-root MuiContainer-maxWidthXl css-1cmizrj']/div[@class='MuiBox-root css-11u4k1p']/div[@class='MuiBox-root css-1hz0jbq']/div[@class='MuiBox-root css-ovclti']/div[@class='MuiBox-root css-0']/div[@class='MuiBox-root css-10egq61']/div[@class='MuiBox-root css-6p6ziu']/div[@class='MuiStack-root css-10zbyz5']/div[5]/div[1]/div[1]/div[1]/div[1]//*[name()='svg']")
+	WebElement CareerInfo_edit_page;
+	
+	@FindBy(xpath = "(//*[@class='MuiChip-label MuiChip-labelSmall css-b9zgoq'])[1]")
+	WebElement CareerInfo_Percentagecompletion_page;
+	
 	
 	//Constructor
     public Candidate_ProfilePage(WebDriver driver)
@@ -273,7 +341,6 @@ public class Candidate_ProfilePage extends Generic
     {
     	 JavascriptExecutor js = (JavascriptExecutor) driver;
     	((JavascriptExecutor) driver).executeScript("arguments[0].click();", Clickuploadpicpage);
-    	//Generic.Click(Clickuploadpicpage, 10);
     }
     
     public void Usecamara()
@@ -283,6 +350,7 @@ public class Candidate_ProfilePage extends Generic
     
     public void Takepic()
     {
+
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     	wait.until(ExpectedConditions.elementToBeClickable(Takepicpage));
     	Generic.Click(Takepicpage, 20);
@@ -295,18 +363,29 @@ public class Candidate_ProfilePage extends Generic
         js.executeScript("arguments[0].click();", savepicbuttonpage);
     }
     
+    public void Dp_Cancel()
+    {
+    	Generic.Click(Dp_Cancelpage, 10);
+    }
+    
     public void record_selfintro_button()
     {
-    	Generic.Click(recordnowbuttonpage, 0);
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    	wait.until(ExpectedConditions.elementToBeClickable(recordnowbuttonpage));
+    	Generic.Click(recordnowbuttonpage, 30);
     }
     
     public void startrecordbutton()
     {
-    	Generic.Click(startrecordbuttonpage, 0);
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    	wait.until(ExpectedConditions.elementToBeClickable(startrecordbuttonpage));
+    	Generic.Click(startrecordbuttonpage, 30);
     }
     
     public void stoprecordbutton()
     {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    	wait.until(ExpectedConditions.elementToBeClickable(stoprecordbuttonpage));
     	Generic.Click(stoprecordbuttonpage, 30);
     }
     
@@ -322,15 +401,39 @@ public class Candidate_ProfilePage extends Generic
     	Generic.Click(viewvideobuttonpage, 0);
     } 
     
+    public void viewvideocancelicon()
+    {
+    	JavascriptExecutor js = (JavascriptExecutor) driver;
+     	((JavascriptExecutor) driver).executeScript("arguments[0].click();", viewvideocanceliconpage);
+    	//Generic.Click(viewvideocanceliconpage, 0);
+    } 
+    
     public boolean Under_reviewtext()
     {
     	try
     	{
     		return Underreviewtextpage.isDisplayed();
-    	}catch (Exception e)
-    	{
-    		return false;  	
-    	}	
+    	}catch (NoSuchElementException e) {
+    		return false;
+    	}
+    }
+                                 
+    public boolean Approvedtext()
+    {
+    	try {
+            return Approvedtextpage.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    
+    public boolean isRetakeButtonDisabled() {
+        return !Retakebuttonkebabpage.isEnabled();
+    }
+    
+    public String Under_reviewtext1()
+    {
+       return Underreviewtextpage.getText();
     }  
     
     public void Retakebuttonkebab()
@@ -361,7 +464,34 @@ public class Candidate_ProfilePage extends Generic
     	Generic.Click(addprofile_savebutton_page, 0);
     }
     
-    public void add_AreaofIntrestButton()
+    public boolean Profile_Edit_Icon_Exist()
+    {
+        try
+        {
+        	return Profile_Edit_Icon_page.isEnabled();
+        }catch(NoSuchElementException e) {
+        	return false;
+        }
+    }
+    
+    public void Profile_Edit_Icon1()
+    {
+    	JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", Profile_Edit_Icon_page);
+        Generic.Click(Profile_Edit_Icon_page, 10);
+    }
+    
+    public void Profile_EditCancel_Icon()
+    {
+    	Generic.Click(Profile_EditCancel_Icon_page, 0);
+    }
+
+    public String Profile_GetText()
+    {
+		return Profile_GetText_page.getText();  	
+    }
+
+	public void add_AreaofIntrestButton()
     {
     	JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", add_AreaofIntrestButton_page);
@@ -593,22 +723,43 @@ public class Candidate_ProfilePage extends Generic
     public void Course_type()
     {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Course_type_page));
+        wait.until(ExpectedConditions.elementToBeClickable(Course_type_page));
     	Generic.Click(Course_type_page, 20);
     }
     
     public void Mark(String sent)
     {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Mark_page));
+        wait.until(ExpectedConditions.elementToBeClickable(Mark_page));
     	Generic.sendkeys(Mark_page,sent, 30);
     }
     
     public void Save_button_Education()
     {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Save_button_Education_page));
+        wait.until(ExpectedConditions.elementToBeClickable(Save_button_Education_page));
     	Save_button_Education_page.click();
+    }
+    
+    public void Editbutton()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(Editbutton_page));
+    	Editbutton_page.click();
+    }
+    
+    public void Addmore_Edu_button()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    	wait.until(ExpectedConditions.elementToBeClickable(Addmore_Edu_button_page));
+    	Addmore_Edu_button_page.click();
+    }
+    
+    public void Delete_Edu_button()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    	wait.until(ExpectedConditions.elementToBeClickable(Delete_Edu_button_page));
+    	Delete_Edu_button_page.click();
     }
     
     public void Addskill_button()
@@ -655,11 +806,23 @@ public class Candidate_ProfilePage extends Generic
     	Generic.Click(Skills_secondaryskill_dropdown_page, 10);
     }
     
-    public void Skills_secondaryskill_option()
+    public void Skills_secondaryskill_option1()
     {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Skills_secondaryskill_option_page));
-    	Generic.Click(Skills_secondaryskill_option_page, 10);
+    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Skills_secondaryskill_option1_page));
+    	Generic.Click(Skills_secondaryskill_option1_page, 10);
+    }
+    
+    public String Skill_warning_message()
+    {
+    	return Skill_warning_message_page.getText();
+    }
+    
+    public void Skills_secondaryskill_option2()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(Skills_secondaryskill_option2_page));
+    	Generic.Click(Skills_secondaryskill_option2_page, 20);
     }
     
     public void Skills_secondaryrating()
@@ -686,9 +849,17 @@ public class Candidate_ProfilePage extends Generic
     public void Skills_savebutton()
     {
     	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    	WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(Skills_savebutton_page));
+        wait.until(ExpectedConditions.elementToBeClickable(Skills_savebutton_page));
     	Generic.Click(Skills_savebutton_page, 10);
     }   
+    
+    public void Skill_Editbutton()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(Skill_Editbutton_page));
+    	Generic.Click(Skill_Editbutton_page, 20);
+ 
+    }  
     
     public void AddcareerInfo_button()
     {
@@ -702,9 +873,14 @@ public class Candidate_ProfilePage extends Generic
     	Generic.Click(CareerInfo_Availabilitydropdown_page, 10);
     }
     
-    public void CareerInfo_Availabilityoption()
+    public void CareerInfo_Availabilityoption1()
     {
-    	Generic.Click(CareerInfo_Availabilityoption_page, 10);
+    	Generic.Click(CareerInfo_Availabilityoption_page1, 10);
+    }
+    
+    public void CareerInfo_Availabilityoption2()
+    {
+    	Generic.Click(CareerInfo_Availabilityoption_page2, 10);
     }
     
     public void CareerInfo_loactiondropdown()
@@ -725,6 +901,48 @@ public class Candidate_ProfilePage extends Generic
     public void CareerInfo_savebutton()
     {
     	Generic.Click(CareerInfo_savebutton_page, 10);
+    }
+    
+    public void CareerInfo_edit_page()
+    {
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(CareerInfo_edit_page));
+    	Generic.Click(CareerInfo_edit_page, 10);
+    }
+    
+    public String CareerInfo_Percentagecompletion()
+    {
+    	 return CareerInfo_Percentagecompletion_page.getText();
+    }
+    
+    public String dp_Percentagecompletion()
+    {
+    	 return dp_Percentagecompletion_page.getText();
+    }
+    
+    public String profile_Percentagecompletion()
+    {
+    	 return profile_Percentagecompletion_page.getText();
+    }
+    
+    public String AreaofIntrest_Percentagecompletion()
+    {
+    	 return AreaofIntrest_Percentagecompletion_page.getText();
+    }
+    
+    public String Identification_Percentagecompletion()
+    {
+    	 return Identification_Percentagecompletion_page.getText();
+    }
+    
+    public String Education_Percentagecompletion()
+    {
+    	 return Education_Percentagecompletion_page.getText();
+    }
+    
+    public String Skill_Percentagecompletion()
+    {
+    	 return Skill_Percentagecompletion_page.getText();
     }
 }
 

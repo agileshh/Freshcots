@@ -1,10 +1,12 @@
 package Test;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +17,7 @@ import Base.Baseclass;
 import Pages.Candidate_ProfilePage;
 import Pages.Candidate_profilePage2;
 import Pages.LoginPage;
+import Utills.Generic;
 
 public class Candidate_Profile extends Baseclass
 {
@@ -28,23 +31,36 @@ public class Candidate_Profile extends Baseclass
 	  {
 		  driver= Initializebrowser("chrome");
 		  login = new LoginPage(driver);
-		  login.HomeLoginbutton();
-		  Thread.sleep(2000);
-		  login.loginemail("syqene@azuretechtalk.net");
-		  login.sendotpbutton();
-		  String otp = "1847";
-		  login.enterOTP(otp);
-		  login.ValidOTP();
 		  profile = new Candidate_ProfilePage(driver);
 		  profile.ViewProfilebutton();
 	  }
 	  
+
+	  @Test (priority= 0) 
 	 // @Test (priority= 0) 
 	  public void displaypicture() throws InterruptedException
 	  {
 		 try
 		 {
 			  profile = new Candidate_ProfilePage(driver);
+			  profile.Uploadpic();
+			  profile.Usecamara();
+			  Thread.sleep(4000);
+			  profile.Takepic();
+			  profile.savepicbutton();
+			  Thread.sleep(5000);
+			  String actualText= "15%";
+			  String ExpectedText = profile.dp_Percentagecompletion();
+			  Assert.assertEquals(ExpectedText,actualText);
+		 }catch(Exception ignored) {}
+	  }		  
+	  
+	  @Test (priority= 1)
+	  public void SelfIntro() throws InterruptedException
+	  {
+		 profile = new Candidate_ProfilePage(driver);
+		 try
+		 {
 			  Thread.sleep(5000);
 			  profile.Uploadpic();
 			  profile.Usecamara();
@@ -63,7 +79,37 @@ public class Candidate_Profile extends Baseclass
 		 {
 			  profile = new Candidate_ProfilePage(driver);
 			  profile.record_selfintro_button();
+			  Thread.sleep(4000);
 			  profile.startrecordbutton();
+			  Thread.sleep(4000);
+			  profile.stoprecordbutton();	
+			  profile.submitforreviewbutton();
+			  //profile.viewvideobutton();	
+			 // profile.viewvideocancelicon();
+		 }catch (Exception e) {
+			 System.out.println( e.getMessage());  
+			 System.out.println("Video already recorded");
+		 }	 
+		 try
+		 {
+			 if(profile.Under_reviewtext())
+			 {
+				 profile.Retakebutton();
+				 profile.startrecordbutton();
+				 profile.stoprecordbutton();	
+				 profile.submitforreviewbutton();	
+				 System.out.println("Under review is Condition is passed");
+			 }if(profile.Approvedtext())
+			 {
+				 Assert.assertTrue(profile.Approvedtext(), "'Approved' text is not visible.");
+			     Assert.assertTrue(profile.isRetakeButtonDisabled(), "Retake button should be disabled.");
+			 }		 
+		 }catch (Exception e) {
+			 System.out.println("Demo");
+		 }	 
+	   }
+	  
+	  @Test (priority= 2)
 			  profile.stoprecordbutton();	
 			  profile.submitforreviewbutton();
 			  profile.viewvideobutton();
@@ -84,14 +130,34 @@ public class Candidate_Profile extends Baseclass
 			  Thread.sleep(3000);
 			  profile.addprofile_text_area("Hi I am XYZ writing the teste cases in both manual and Automation as well...keep going");
 		      profile.addprofile_savebutton();
-		  }catch (Exception e)
+		      Thread.sleep(5000);
+		      String actualText = "20%";
+		      String ExpectedText = profile.profile_Percentagecompletion();
+			  Assert.assertEquals(ExpectedText,actualText);
+		  }catch (Exception e)  {
+			  System.out.println( e.getMessage());
+			  System.out.println("Profile already exist");
+		  }	  	  
+		  try
 		  {
-			  e.getMessage();
+			  if(profile.Profile_Edit_Icon_Exist())
+			  {
+				  profile.Profile_Edit_Icon1();
+				  profile.Profile_EditCancel_Icon();
+				  String Expected = "Hi I am XYZ writing the teste cases in both manual and Automation as well...keep going";
+				  String Actual = profile.Profile_GetText();
+				  Assert.assertEquals(Expected, Actual);
+			  }
+		  }catch (Exception e)  {
+			  System.out.println("No edit icon cant able to edit");
+			  System.out.println( e.getMessage());
 		  }	  
 	  }
 	  
+
+      @Test  (priority= 3)
+	  public void AreaofIntrest() throws InterruptedException
     //  @Test  (priority= 3)
-	  public void AreaofIntrest()
 	  {
     	  try 
     	  {
@@ -102,12 +168,17 @@ public class Candidate_Profile extends Baseclass
         	  profile.SelectDomain_Dropdown();
         	  profile.select_option();
         	  profile.add_AreaofIntrest_savebutton();
+        	  Thread.sleep(5000);
+        	  String actualText= "25%";
+        	  String ExpectedText = profile.AreaofIntrest_Percentagecompletion();
+        	  Assert.assertEquals(ExpectedText,actualText);
     	  }catch (Exception e)
 		  {
-			  e.getMessage();
+    		   System.out.println( e.getMessage());
 		  }	  
 	  }	 
 	  
+	  @Test (priority= 4)
 	  //@Test (priority= 4)
 	  public void Identification() throws InterruptedException
 	  {
@@ -127,6 +198,17 @@ public class Candidate_Profile extends Baseclass
 			   //profile.Languagedropdown();
 			  //profile.Language_option();
 			  //profile.Language_Proficiancy();
+			   profile.Savebutton();  
+			   Thread.sleep(5000);
+			   String actualText= "45%";
+			   String ExpectedText = profile.Identification_Percentagecompletion();
+			   Assert.assertEquals(ExpectedText,actualText);
+		   }catch(Exception e) {
+			   System.out.println( e.getMessage());
+		   }	   
+	  }
+	  
+	  @Test(priority= 5)
 			   profile.Savebutton();   
 		   }catch(Exception e) {
 			   e.getMessage();
@@ -181,6 +263,40 @@ public class Candidate_Profile extends Baseclass
 			   profile.Skills_primaryskill_option();
 			   profile.Skills_primaryrating();
 			   profile.Skills_secondaryskill_dropdown();
+			   profile.Skills_secondaryskill_option1();
+			   profile.Skills_secondaryrating();
+			   profile.Skills_otherskilldropdown();
+			   profile.Skills_otherskilloption();
+			   profile.Skills_savebutton();	 
+			   Thread.sleep(5000);
+			   String actualText= "55%";
+			   String ExpectedText = profile.Skill_Percentagecompletion();
+			   Assert.assertEquals(ExpectedText,actualText);
+		   }catch(Exception e) {
+			   System.out.println( e.getMessage());
+		   }
+		   try
+		   {
+			   profile = new Candidate_ProfilePage(driver);
+			   profile.Skill_Editbutton();
+			   profile.Skills_secondaryskill_dropdown();
+			   profile.Skills_secondaryskill_option2();
+			   String actual = profile.Skill_warning_message();
+			   Assert.assertEquals(actual, "Primary and secondary skills should be different");
+		   }catch (Exception e) {
+			   System.out.println(e.getMessage());
+		   }
+	  }
+	  
+	  @Test(priority= 6)
+	  public void CareerInfo () throws InterruptedException
+	  {
+		 try
+		 {
+			  profile = new Candidate_ProfilePage(driver);
+			  profile.AddcareerInfo_button();
+			  profile.CareerInfo_Availabilitydropdown();
+			  profile.CareerInfo_Availabilityoption1();
 			   profile.Skills_secondaryskill_option();
 			   profile.Skills_secondaryrating();
 			   profile.Skills_otherskilldropdown();
@@ -204,10 +320,81 @@ public class Candidate_Profile extends Baseclass
 			  profile.CareerInfo_loactionoption();
 			  profile.CareerInfo_sal("300000");
 			  profile.CareerInfo_savebutton();
+			  profile.CareerInfo_Percentagecompletion();
+			  Thread.sleep(5000);
+			  String ActualText = "60%";
+			  String ExpectedText = profile.CareerInfo_Percentagecompletion();
+		      Assert.assertEquals(ExpectedText, ActualText);		
 		 }catch(Exception e) {
-			 e.getMessage();
+			 System.out.println(e.getMessage());
 		 }
-	  }
+		 try
+		 {
+			 profile = new Candidate_ProfilePage(driver);	
+			 profile.CareerInfo_edit_page();
+			 profile.CareerInfo_Availabilitydropdown();
+			 profile.CareerInfo_Availabilityoption2();
+			 profile.CareerInfo_sal("250000"); 
+			 profile.CareerInfo_savebutton();
+		 }catch (Exception  e) {
+			 System.out.println(e.getMessage());
+		 }
+	  } 
+	  
+	  @Test(priority= 7)
+	  public void Education() throws InterruptedException
+	  {
+		 try
+		 {
+			   for(int i =0;i<=2;i++)
+			   {
+				   profile = new Candidate_ProfilePage(driver);
+				   Thread.sleep(3000); 
+				   try
+				   {
+					   profile.Add_Education_button();
+				   }catch(Exception e) {
+					   profile.Addmore_Edu_button();
+				   }   
+				   profile.Institution_dropdown();
+				   profile.Institution_option();
+				   profile.State_dropdown();
+				   profile.State_option();
+				   profile.City_dropdown();
+				   profile.City_option();
+				   profile.Course_dropdown();
+				   profile.Course_option();
+				   profile.Department_dropdown();
+				   profile.Department_option();		
+				   profile.From_month_Dropdown();
+				   profile.From_month_option();
+				   profile.From_year_Dropdown();
+				   profile.From_year_option();
+				   profile.To_month_Dropdown();
+				   profile.To_month_option();
+				   profile.To_year_Dropdown();
+				   profile.To_year_option();
+				   //profile.Course_type();
+				   profile.Mark("58");
+				   profile.Save_button_Education();
+				   Thread.sleep(5000);
+				   String actualText= "75%";
+				   String ExpectedText = profile.Education_Percentagecompletion();
+				   Assert.assertEquals(ExpectedText,actualText);
+			   }	   		   
+		 }catch(Exception e) {
+			  System.out.println(e.getMessage());
+		 } 
+		 try
+		 {
+			 profile = new Candidate_ProfilePage(driver);
+			 profile.Editbutton();
+			 profile.Delete_Edu_button();
+		 }catch(Exception e) {
+			 System.out.println( e.getMessage());
+			 System.out.println("Delete button not present");
+		 }
+	  }	  
 	  
 	  @Test (priority= 8)
 	  public void Experience() throws InterruptedException
@@ -257,6 +444,7 @@ public class Candidate_Profile extends Baseclass
 		  profile2.Project_save();
 	  }
 	  
+	 // @Test (priority= 10)
 	  @Test (priority= 10)
 	  public void Certificates() throws InterruptedException
 	  {
