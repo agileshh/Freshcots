@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -31,12 +31,13 @@ public class Candidate_Profile extends Baseclass
 	  {
 		  driver= Initializebrowser("chrome");
 		  login = new LoginPage(driver);
-		  Generic.loginWithOTP(login, "candidate1");
 		  profile = new Candidate_ProfilePage(driver);
 		  profile.ViewProfilebutton();
 	  }
 	  
+
 	  @Test (priority= 0) 
+	 // @Test (priority= 0) 
 	  public void displaypicture() throws InterruptedException
 	  {
 		 try
@@ -60,6 +61,23 @@ public class Candidate_Profile extends Baseclass
 		 profile = new Candidate_ProfilePage(driver);
 		 try
 		 {
+			  Thread.sleep(5000);
+			  profile.Uploadpic();
+			  profile.Usecamara();
+			  Thread.sleep(5000);
+			  profile.Takepic();
+			  profile.savepicbutton();
+		 }catch(Exception e) {
+			 e.getMessage();
+		 }
+	  }		  
+	  
+	//  @Test (priority= 1)
+	  public void SelfIntro() throws InterruptedException
+	  {
+		 try
+		 {
+			  profile = new Candidate_ProfilePage(driver);
 			  profile.record_selfintro_button();
 			  Thread.sleep(4000);
 			  profile.startrecordbutton();
@@ -92,6 +110,17 @@ public class Candidate_Profile extends Baseclass
 	   }
 	  
 	  @Test (priority= 2)
+			  profile.stoprecordbutton();	
+			  profile.submitforreviewbutton();
+			  profile.viewvideobutton();
+			  
+		 }catch (Exception e) {
+			 e.getMessage();
+		 }	 
+	   }
+	  
+	
+	 // @Test (priority= 2,dependsOnMethods = "SelfIntro")
 	  public void Profile() throws InterruptedException
 	  {
 		  try
@@ -125,8 +154,10 @@ public class Candidate_Profile extends Baseclass
 		  }	  
 	  }
 	  
+
       @Test  (priority= 3)
 	  public void AreaofIntrest() throws InterruptedException
+    //  @Test  (priority= 3)
 	  {
     	  try 
     	  {
@@ -148,6 +179,7 @@ public class Candidate_Profile extends Baseclass
 	  }	 
 	  
 	  @Test (priority= 4)
+	  //@Test (priority= 4)
 	  public void Identification() throws InterruptedException
 	  {
 		   try
@@ -177,6 +209,47 @@ public class Candidate_Profile extends Baseclass
 	  }
 	  
 	  @Test(priority= 5)
+			   profile.Savebutton();   
+		   }catch(Exception e) {
+			   e.getMessage();
+		   }	   
+	  }
+	  
+	 // @Test(priority= 5)
+	  public void Education() throws InterruptedException
+	  {
+		 try
+		 {
+			  profile = new Candidate_ProfilePage(driver);
+			   Thread.sleep(3000); 
+			   profile.Add_Education_button();
+			   profile.Institution_dropdown();
+			   profile.Institution_option();
+			   profile.State_dropdown();
+			   profile.State_option();
+			   profile.City_dropdown();
+			   profile.City_option();
+			   profile.Course_dropdown();
+			   profile.Course_option();
+			   profile.Department_dropdown();
+			   profile.Department_option();		
+			   profile.From_month_Dropdown();
+			   profile.From_month_option();
+			   profile.From_year_Dropdown();
+			   profile.From_year_option();
+			   profile.To_month_Dropdown();
+			   profile.To_month_option();
+			   profile.To_year_Dropdown();
+			   profile.To_year_option();
+			   //profile.Course_type();
+			   profile.Mark("58");
+			   profile.Save_button_Education();
+		 }catch(Exception e) {
+			 e.getMessage();
+		 }
+	  }	  
+	  
+	 // @Test(priority= 6)
 	  public void Skills() throws InterruptedException
 	  {
 		   try
@@ -224,6 +297,25 @@ public class Candidate_Profile extends Baseclass
 			  profile.AddcareerInfo_button();
 			  profile.CareerInfo_Availabilitydropdown();
 			  profile.CareerInfo_Availabilityoption1();
+			   profile.Skills_secondaryskill_option();
+			   profile.Skills_secondaryrating();
+			   profile.Skills_otherskilldropdown();
+			   profile.Skills_otherskilloption();
+			   profile.Skills_savebutton();	     
+		   }catch(Exception e) {
+			   e.getMessage();
+		   }
+	  }
+	  
+	// @Test(priority= 7)
+	  public void CareerInfo ()
+	  {
+		 try
+		 {
+			 profile = new Candidate_ProfilePage(driver);
+			  profile.AddcareerInfo_button();
+			  profile.CareerInfo_Availabilitydropdown();
+			  profile.CareerInfo_Availabilityoption();
 			  profile.CareerInfo_loactiondropdown();
 			  profile.CareerInfo_loactionoption();
 			  profile.CareerInfo_sal("300000");
@@ -304,7 +396,7 @@ public class Candidate_Profile extends Baseclass
 		 }
 	  }	  
 	  
-	  //@Test (priority= 8)
+	  @Test (priority= 8)
 	  public void Experience() throws InterruptedException
 	  {
 		  profile2 = new Candidate_profilePage2(driver);
@@ -353,6 +445,7 @@ public class Candidate_Profile extends Baseclass
 	  }
 	  
 	 // @Test (priority= 10)
+	  @Test (priority= 10)
 	  public void Certificates() throws InterruptedException
 	  {
 		  profile2 = new Candidate_profilePage2(driver);

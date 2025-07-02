@@ -350,9 +350,10 @@ public class Candidate_ProfilePage extends Generic
     
     public void Takepic()
     {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     	wait.until(ExpectedConditions.elementToBeClickable(Takepicpage));
-    	Generic.Click(Takepicpage, 30);
+    	Generic.Click(Takepicpage, 20);
     }
     
     public void savepicbutton()

@@ -1,5 +1,6 @@
 package Test;
 
+
 import static org.testng.Assert.assertFalse;
 
 import java.io.IOException;
@@ -14,6 +15,15 @@ import org.testng.asserts.SoftAssert;
 
 import Base.Baseclass;
 import Pages.Candidate_Availability_Page;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Base.Baseclass;
+
 import Pages.Candidate_ProfilePage;
 import Pages.Candidate_profilePage2;
 import Pages.LoginPage;
@@ -24,6 +34,7 @@ public class Candidate_Availability extends Baseclass
 	public LoginPage login;
 	public Candidate_ProfilePage profile;  
 	public Candidate_profilePage2 profile2;  
+
 	public Candidate_Availability_Page Availability;  
 	
 	  @BeforeMethod
@@ -36,10 +47,24 @@ public class Candidate_Availability extends Baseclass
 		  login.loginemail("votyxa@polkaroad.net");
 		  login.sendotpbutton();
 		  String otp = "1847";
-		  login.enterOTP(otp);
-		  login.ValidOTP();
-		  profile = new Candidate_ProfilePage(driver);
-		  profile.ViewProfilebutton();
+    }
+    
+	  @BeforeTest
+	  public void setup() throws IOException
+	  {
+		  driver= Initializebrowser("chrome");
+	  }
+	  
+	  @Test (priority= 0)
+	  public void viewprofile() throws InterruptedException
+	  {
+		  login = new LoginPage(driver);
+		  login.HomeLoginbutton();
+		  Thread.sleep(3000);
+		  login.loginemail("xugecycu@dreamclarify.org");
+		  login.sendotpbutton();
+		  String otp = "1847";
+		  Thread.sleep(3000);
 	  }
 	  
 	  @Test (priority= 0)
