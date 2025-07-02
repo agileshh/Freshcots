@@ -23,104 +23,100 @@ public class Login extends Baseclass
   public WebDriver driver;
   public LoginPage login;
   
-  @BeforeTest
+  @BeforeMethod
   public void setup() throws IOException
   {
 	  driver= Initializebrowser("chrome");
-  }
-  
-  @Test(priority = 0)
-  public void Loginpage()
-  {
-    login = new LoginPage(driver);
-	login.HomeLoginbutton();
   }
   
   @Test(priority = 1)
   public void Clickemptybutton()
   {
 	  login = new LoginPage(driver);
+	  login.HomeLoginbutton();
 	  boolean isdisplayed =login.sendbuttondisabled();
-	  Assert.assertFalse(isdisplayed, "yes its displayed");
-  }
-  
-  //@Test(priority = 4)
-  public void Register()
-  {
-	   login = new LoginPage(driver);
-	   login.registerbuttonlogin();
-	   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	   WebElement nextPageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='demo-customized-button']")));
-	   Assert.assertTrue(nextPageElement.isDisplayed(), "Failed to navigate to the expected page.");
-  }
-  
-  //@Test(priority = 2)
-  public void Invalid_loginemail()
-  {
-	  login = new LoginPage(driver);
-	  login.loginemail_Invalid("agil@gmeil.com");
+	  Assert.assertFalse(login.sendbuttondisabled(), "yes its displayed");
   }
   
   @Test(priority = 2)
-  public void Loginemail() throws InterruptedException 
+  public void Register()
   {
-	login = new LoginPage(driver);
-	login.loginemail("Agileshsakthi@gmail.com");
+	   login = new LoginPage(driver);
+	   login.HomeLoginbutton();
+	   login.registerbuttonlogin();
+	   Assert.assertTrue(login.RegisterpageVerify_page(), "Navigating to register page");
   }
-   
+  
   @Test(priority = 3)
-  public void Sendotpbutton()
+  public void Invalid_loginemail() throws InterruptedException
   {
 	  login = new LoginPage(driver);
+	  login.HomeLoginbutton();
+	  Thread.sleep(4000);
+	  login.loginemail_Invalid("agil@gmeil");
 	  login.sendotpbutton();
-	  try
-	  {
-		  WebElement nextPageElement = driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 css-bxmwoh']"));
-		  Assert.assertTrue(nextPageElement.isDisplayed(), "Failed to navigate to the expected page.");
-	  }catch(Exception e) {
-		  Assert.fail("Element not found within timeout: Failed to navigate to the expected page.");
-	  }
+	  String ActualText= "Please enter a valid email id";
+	  String ExpectedText = login.WarningmsgEmail();
+	  Assert.assertEquals(ExpectedText, ActualText, "Failed to capture the same message");
   }
   
   @Test(priority = 4)
-  public void Editbutton()
+  public void EditotpbuttonVerify() throws InterruptedException
   {
 	  login = new LoginPage(driver);
-	  login.Editmailidbutton();
-	  try 
-	  {
-		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		    WebElement nextpageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id=':r24:']")));
-		    Assert.assertTrue(nextpageElement.isDisplayed(), "Failed to navigate to the expected page.");
-		} catch (Exception e) 
-	    {
-		    Assert.fail("Element not found within timeout: Failed to navigate to the expected page.");
-		}
+	  login.HomeLoginbutton();
+	  Thread.sleep(4000);
+	  login.loginemail("saginomo@polkaroad.net");
+	  login.sendotpbutton();
+	  login.EditbuttonOTPClick();
+	  Assert.assertTrue(login.EditbuttonOTP(),"Navigating to Edit page");
+  } 
+            
+  @Test(priority = 5)
+  public void EditbuttonNavigation() throws InterruptedException
+  {
+	  login = new LoginPage(driver);
+	  Thread.sleep(4000);
+	  login.HomeLoginbutton();
+	  Thread.sleep(4000);
+	  login.loginemail("saginomo@polkaroad.net");
+	  login.sendotpbutton();
+	  login.EditbuttonOTPClick();
+	  Thread.sleep(4000);
+	  login.loginemail("hybefo@azuretechtalk.net");
+	  login.sendotpbutton();  
   }
   
-  @Test(priority = 5)
-  public void OTP() 
+  @Test(priority = 6)
+  public void ValidOTP() throws InterruptedException 
   {
 	  login = new LoginPage(driver);
-	  login.loginemail("Agileshsakthi@gmail.com");
+	  login.HomeLoginbutton();
+	  Thread.sleep(4000);
+	  login.loginemail("saginomo@polkaroad.net");
 	  login.sendotpbutton();
-	  String otp = "1874";
+	  String otp = "1847";
 	  login.enterOTP(otp);
+	  login.ValidOTP();
   }    
   
- // @Test(priority= 6)
-  public void Submit_button()
+  @Test(priority= 7)
+  public void InvalidOTP_Button() throws InterruptedException
   {
 	  login = new LoginPage(driver);
+	  login.HomeLoginbutton();
+	  Thread.sleep(4000);
+	  login.loginemail("hybefo@azuretechtalk.net");
+	  login.sendotpbutton();
+	  String otp = "1857";
+	  login.enterOTP(otp);
 	  login.InvalidOTPcheck();
-	  try 
-	  {
-		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		    WebElement nextpageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[normalize-space()='Contact admin']")));
-		    Assert.assertTrue(nextpageElement.isDisplayed(), "Failed to navigate to the expected page.");
-		} catch (Exception e) 
-	    {
-		    Assert.fail("Element not found within timeout: Failed to navigate to the expected page.");
-		}
+	  Assert.assertTrue(login.ContactAdminActionVerify(), "Not displayed");  
+  } 
+  
+  @AfterMethod
+  public void cleanUp() 
+  {
+	driver.quit();
   }
 }
