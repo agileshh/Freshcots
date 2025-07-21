@@ -31,6 +31,15 @@ public class Generic_Schedule
 		  Schedule.Choose_time1();
 		  Schedule.Confirmbutton();
     }
+	
+	public static void ScheduleInterview_Slot3_Evening(Expert_Schedule_Page Schedule) throws InterruptedException 
+	{
+		  Schedule.Interview_dropdown();
+		  Schedule.PickCandidate();
+		  Schedule.SelectSlot3();
+		  Schedule.Choose_time1_Eve();
+		  Schedule.Confirmbutton();
+    }
 	                                      
 	public static void ScheduleInterview_Tech(Expert_Schedule_Page Schedule) throws InterruptedException 
 	{

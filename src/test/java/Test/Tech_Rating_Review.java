@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
 import Base.Baseclass;
 import Pages.ACS_Page;
 import Pages.Candidate_Availability_Page;
-import Pages.Candidate_ProfilePage;
-import Pages.Candidate_profilePage2;
+import Pages.Candidate_ProfilePage1_About;
+import Pages.Candidate_profilePage2_IDandEdu;
 import Pages.Expert_Schedule_Page;
 import Pages.LoginPage;
 import Pages.Rating_and_Review_page;
@@ -32,8 +32,8 @@ public class Tech_Rating_Review extends Baseclass
 {
 	public WebDriver driver;
 	public LoginPage login;
-	public Candidate_ProfilePage profile;  
-	public Candidate_profilePage2 profile2;  
+	public Candidate_ProfilePage1_About profile;  
+	public Candidate_profilePage2_IDandEdu profile2;  
 	public Candidate_Availability_Page Availability;  
 	public Expert_Schedule_Page Schedule;
 	public ACS_Page ACS;
@@ -142,7 +142,7 @@ public class Tech_Rating_Review extends Baseclass
 	  
 	  @Test (priority = 5)
 	  @Severity(SeverityLevel.CRITICAL)
-	  @Description("To Validate the Reviewer with same skill set")
+	  @Description("To Validate whether INterviewer can review the same Candidate")
 	  public void Reviewer_Swap_With_SameSkill() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
@@ -155,6 +155,23 @@ public class Tech_Rating_Review extends Baseclass
 		  Generic.logout(login);	  
 		  softAssert.assertAll();
 	  }	  
+	  
+	  @Test (priority = 5)
+	  @Severity(SeverityLevel.CRITICAL)
+	  @Description("If no candidates are available for reviewer rating, the button should be in a disabled state")
+	  public void Reviewer_Grab_Button_Disable() throws InterruptedException
+	  {
+		  login = new LoginPage(driver);
+		  Availability = new Candidate_Availability_Page(driver);
+		  Rate_Review = new Rating_and_Review_page (driver);
+		  softAssert = new SoftAssert();
+		  Generic.loginWithOTP(login, "expert3");
+		  Rate_Review.Review_and_rate();
+		  if(Rate_Review.No_Candidate_For_Review())
+		  {
+			  softAssert.assertFalse(Rate_Review.Grab_One_Button_EnableorDisable());
+		  }
+	  }
 	  
 	  @AfterMethod
 	  public void cleanUp() 

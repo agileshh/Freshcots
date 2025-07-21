@@ -35,11 +35,17 @@ public class Expert_Schedule_Page
 	   @FindBy(xpath = "(//*[@class = 'MuiTypography-root MuiTypography-body1 css-epz3qv'])[2]")
 	   WebElement SelectSlot1_page;
 	   
+	   @FindBy(xpath = "(//*[@class = 'MuiTypography-root MuiTypography-body1 css-epz3qv'])[3]")
+	   WebElement SelectSlot3_page;
+	   
 	   @FindBy(xpath = "//button[normalize-space()='07:00 AM']")
 	   WebElement Choose_time1_page;
 	   
 	   @FindBy(xpath = "//button[normalize-space()='07:30 AM']")
 	   WebElement Choose_time2_page;
+	   
+	   @FindBy(xpath = "//button[normalize-space()='07:30 PM']")
+	   WebElement Choose_time1_Eve_page;
 	   
 	   @FindBy(xpath = "//button[normalize-space()='Cancel']")
 	   WebElement Cancelbutton_Page;
@@ -132,6 +138,13 @@ public class Expert_Schedule_Page
 	        js.executeScript("arguments[0].click();", SelectSlot1_page);
 	   }
 	   
+	   public void SelectSlot3()
+	   {
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript("arguments[0].scrollIntoView(true);", SelectSlot3_page);
+	        js.executeScript("arguments[0].click();", SelectSlot3_page);
+	   }
+	   
 	   public boolean SelectSlot1_IsEnabled()
 	   {
 		    List<WebElement> element = driver.findElements(By.xpath("(//*[@class = 'MuiTypography-root MuiTypography-body1 css-epz3qv'])[2]"));
@@ -146,6 +159,11 @@ public class Expert_Schedule_Page
 	   public void Choose_time2()
 	   {
 		   Generic.Click(Choose_time2_page, 10);
+	   }
+	   
+	   public void Choose_time1_Eve()
+	   {
+		   Generic.Click(Choose_time1_Eve_page, 10);
 	   }
 	   
 	   public void Cancelbutton()

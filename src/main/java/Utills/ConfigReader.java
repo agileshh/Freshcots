@@ -11,7 +11,8 @@ public class ConfigReader
    
    static
    {
-       try  {
+       try  
+       {
            String filePath = "C:\\Users\\arusi\\Repo\\Freshcots%20Test%20Automation\\AutomationTesting\\Freshcots\\src\\test\\resource\\config.properties";
            fis = new FileInputStream(filePath);
            properties = new Properties();

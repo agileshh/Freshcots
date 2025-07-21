@@ -47,6 +47,8 @@ public void loadproperties() throws IOException
 	    ChromeOptions options = new ChromeOptions();
 	    options.addArguments("--use-fake-ui-for-media-stream");
 	    options.setExperimentalOption("prefs", prefs);
+	    //options.addArguments("--auto-open-devtools-for-tabs");
+
 
 	    if (browser.equalsIgnoreCase("chrome"))
 	    {

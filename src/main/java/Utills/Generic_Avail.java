@@ -47,6 +47,26 @@ public class Generic_Avail
 		   Availability.Confirmbutton_Click();
     }
 	
+	public static void Canidate_Availability_HR_Eve(Candidate_Availability_Page Availability) throws InterruptedException 
+	{
+		  Availability.InterviewDD();
+		  Availability.HR_Tab_Page();
+		  try
+		  {
+			  Availability.Cancel_button();
+			  Availability.CancelIcon_button();		  
+		  }catch (Exception e) {e.getMessage();}
+		  try
+		  {
+			  Availability.RequestInterviewbutton();
+		  }catch (Exception e) {e.getMessage();}
+		  try {
+			  Availability.RequestAgainbutton();		 
+		  }catch(Exception e) {e.getMessage();}
+		   Availability.Eveningsession_SelectAll();
+		   Availability.Confirmbutton_Click();
+    }
+	
 	public static void Canidate_Availability_Tech(Candidate_Availability_Page Availability) throws InterruptedException 
 	{
 		  Availability.InterviewDD();

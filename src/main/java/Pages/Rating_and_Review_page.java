@@ -80,6 +80,9 @@ public class Rating_and_Review_page
 	   @FindBy(xpath = "//h5[normalize-space()='1']")
 	   WebElement Candidate_For_Review_text;
 	   
+	   @FindBy(xpath = "//h5[normalize-space()='0']")
+	   WebElement No_Candidate_For_Review;
+	   
 	   //Constructor
 	   public Rating_and_Review_page(WebDriver driver)
 	   {
@@ -191,5 +194,10 @@ public class Rating_and_Review_page
 	   public boolean Tech_Approved ()
 	   {
 		   return Tech_Approved.isDisplayed();
+	   }
+	   
+	   public boolean No_Candidate_For_Review ()
+	   {
+		   return No_Candidate_For_Review.isDisplayed();
 	   }
 }

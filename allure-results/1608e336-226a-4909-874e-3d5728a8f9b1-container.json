@@ -1,0 +1,1 @@
+{"uuid":"1608e336-226a-4909-874e-3d5728a8f9b1","name":"Test.Error_state.setup","children":["5cec6e1e-6ac6-45b0-b848-04296e335ab5"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1751018104021,"stop":1751018107955}],"afters":[],"start":1751018104021,"stop":1751018107955}

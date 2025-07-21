@@ -1,0 +1,1 @@
+{"uuid":"8ef85643-6a6f-4052-9228-ed605b8dc720","name":"Test.Avail_Schedule.setup","children":["ccaab4c2-c961-4545-868c-3e2dd6e22d0c"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1751543563352,"stop":1751543565211}],"afters":[],"start":1751543563352,"stop":1751543565211}

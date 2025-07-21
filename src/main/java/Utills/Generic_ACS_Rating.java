@@ -37,7 +37,8 @@ public class Generic_ACS_Rating
 	 {
 		  ACS.Interview_dropdown();
 		  ACS.UpcomingTab_nav();
-		  ACS.ACS_Joinnow_button();
+		  ACS.JoinNowButtonParticularTime();
+		  //ACS.ACS_Joinnow_button();
 		  Thread.sleep(8000);
 		  ACS.ACS_MicIcon();
 		  ACS.ACS_CamaraIcon();
@@ -50,6 +51,7 @@ public class Generic_ACS_Rating
 	 {
 		  ACS.Interview_dropdown();
 		  ACS.UpcomingTab_nav();
+		  ACS.Joinnow_button_Enabled();
 		  ACS.ACS_Joinnow_button();
 		  Thread.sleep(20000);
 		  ACS.ACS_MicIcon();

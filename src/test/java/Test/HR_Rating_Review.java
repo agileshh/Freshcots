@@ -4,6 +4,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.testng.AssertJUnit;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -14,8 +17,8 @@ import org.testng.annotations.Test;
 import Base.Baseclass;
 import Pages.ACS_Page;
 import Pages.Candidate_Availability_Page;
-import Pages.Candidate_ProfilePage;
-import Pages.Candidate_profilePage2;
+import Pages.Candidate_ProfilePage1_About;
+import Pages.Candidate_profilePage2_IDandEdu;
 import Pages.Expert_Schedule_Page;
 import Pages.LoginPage;
 import Pages.Rating_and_Review_page;
@@ -31,8 +34,8 @@ public class HR_Rating_Review extends Baseclass
 {
 	public WebDriver driver;
 	public LoginPage login;
-	public Candidate_ProfilePage profile;  
-	public Candidate_profilePage2 profile2;  
+	public Candidate_ProfilePage1_About profile;  
+	public Candidate_profilePage2_IDandEdu profile2;  
 	public Candidate_Availability_Page Availability;  
 	public Expert_Schedule_Page Schedule;
 	public ACS_Page ACS;
@@ -45,7 +48,55 @@ public class HR_Rating_Review extends Baseclass
 		  driver= Initializebrowser("chrome");
 	  }
 	  
-	  //@Test (priority = 0)
+	  @Test (priority = 0)
+	  @Severity(SeverityLevel.BLOCKER)
+	  @Description("To validate the Completion of Interview")
+	  public void InterviewVerifyJoinNowButton_ExpertPOV() throws InterruptedException
+	  {
+		   login = new LoginPage(driver);
+		   Availability = new Candidate_Availability_Page(driver);	 
+		   Schedule= new Expert_Schedule_Page(driver);
+		   ACS = new ACS_Page(driver);
+		   String targetTimeStr = "09:30:00";
+		   LocalDateTime currentTime = LocalDateTime.now();
+		   LocalTime targetTime = LocalTime.parse(targetTimeStr);
+	       LocalDateTime targetDateTime = LocalDateTime.of(LocalDate.now().plusDays(1), targetTime);
+	      /* Generic.loginWithOTP(login, "candidate1");
+	       Generic_Avail.Canidate_Availability_HR(Availability);
+	       Generic.logout(login); */
+	       Generic.loginWithOTP(login, "expert1");
+		   //Generic_Schedule.ScheduleInterview(Schedule);
+		   ACS.Interview_dropdown();
+		   ACS.UpcomingTab_nav();
+		  if(currentTime != targetDateTime)
+		  {
+			  Assert.assertFalse(ACS.Joinnow_button_Enabled());
+		  }
+	  }
+	  
+	 // @Test (priority = 1)
+	  @Severity(SeverityLevel.BLOCKER)
+	  @Description("To validate Join now button before Interview Schecule time from Candidate point of view")
+	  public void InterviewVerifyJoinNowButton_CandidatePOV() throws InterruptedException
+	  {
+		   login = new LoginPage(driver);
+		   Availability = new Candidate_Availability_Page(driver);	 
+		   Schedule= new Expert_Schedule_Page(driver);
+		   ACS = new ACS_Page(driver);
+		   String targetTimeStr = "09:30:00";
+		   LocalDateTime currentTime = LocalDateTime.now();
+		   LocalTime targetTime = LocalTime.parse(targetTimeStr);
+	       LocalDateTime targetDateTime = LocalDateTime.of(LocalDate.now().plusDays(1), targetTime);
+	       Generic.loginWithOTP(login, "candidate1");
+	       Availability.InterviewDD();
+		   Availability.HR_Tab_Page();
+		   if(currentTime != targetDateTime)
+			  {
+				  Assert.assertFalse(ACS.Joinnow_button_Enabled());
+			  }
+	  }
+	  
+	  //@Test (priority = 2)
 	  @Severity(SeverityLevel.BLOCKER)
 	  @Description("To validate the Completion of Interview")
 	  public void Interview_Completed() throws InterruptedException
@@ -65,9 +116,10 @@ public class HR_Rating_Review extends Baseclass
 		  Generic_ACS_Rating.ACS_Interview(ACS);
 		  Generic_ACS_Rating.ACS_Interview_Completed(Schedule);
 		  Generic.logout(login);
+		  
 	  }
 	  
-	  @Test (priority = 0)
+	  //@Test (priority = 3)
 	  @Severity(SeverityLevel.NORMAL)
 	  @Description("To validate the Maximum time of Interview")
 	  public void Maximum_Time_Interview() throws InterruptedException
@@ -87,7 +139,7 @@ public class HR_Rating_Review extends Baseclass
 		  Generic.logout(login);
 	  }
 	                                              
-	  //@Test (priority = 1)
+	  //@Test (priority = 4)
 	  @Severity(SeverityLevel.NORMAL)
 	  @Description("To validate the Rating provided by Interviewer")
 	  public void Interviewer_Rating() throws InterruptedException
@@ -95,7 +147,7 @@ public class HR_Rating_Review extends Baseclass
 		  login = new LoginPage(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Rate_Review = new Rating_and_Review_page (driver);
-		  Generic.loginWithOTP(login, "expert1");
+		  Generic.loginWithOTP(login, "Candidate1");
 		  Generic_Avail.Canidate_Availability_HR_Screen(Availability);
 		  Generic.RefreshPage(driver);
 		  Assert.assertTrue( Rate_Review.HR_Rating_Pending());	  
@@ -106,7 +158,7 @@ public class HR_Rating_Review extends Baseclass
 		  softAssert.assertAll();
 	  }
 		  
-	  //@Test (priority = 2)
+	  //@Test (priority = 5)
 	  @Severity(SeverityLevel.NORMAL)
 	  @Description("To validate the Rating provided by Reviewer")
 	  public void Reviewer_Rating() throws InterruptedException
@@ -125,6 +177,23 @@ public class HR_Rating_Review extends Baseclass
 		  Rate_Review.Go_To_Profile(); 	 
 		  softAssert.assertAll();
 	  }	  
+	  
+	  @Test (priority = 6)
+	  @Severity(SeverityLevel.CRITICAL)
+	  @Description("If no candidates are available for reviewer rating, the button should be in a disabled state")
+	  public void Reviewer_Grab_Button_Disable() throws InterruptedException
+	  {
+		  login = new LoginPage(driver);
+		  Availability = new Candidate_Availability_Page(driver);
+		  Rate_Review = new Rating_and_Review_page (driver);
+		  softAssert = new SoftAssert();
+		  Generic.loginWithOTP(login, "expert2");
+		  Rate_Review.Review_and_rate();
+		  if(Rate_Review.No_Candidate_For_Review())
+		  {
+			  softAssert.assertFalse(Rate_Review.Grab_One_Button_EnableorDisable());
+		  }
+	  }
 	  
 	  @AfterMethod
 	  public void cleanUp() 

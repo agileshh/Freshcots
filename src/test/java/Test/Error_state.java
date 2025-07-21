@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
 import Base.Baseclass;
 import Pages.ACS_Page;
 import Pages.Candidate_Availability_Page;
-import Pages.Candidate_ProfilePage;
-import Pages.Candidate_profilePage2;
+import Pages.Candidate_ProfilePage1_About;
+import Pages.Candidate_profilePage2_IDandEdu;
 import Pages.Expert_Schedule_Page;
 import Pages.LoginPage;
 import Pages.Rating_and_Review_page;
@@ -32,8 +32,8 @@ public class Error_state extends Baseclass
 {
 	public WebDriver driver;
 	public LoginPage login;
-	public Candidate_ProfilePage profile;  
-	public Candidate_profilePage2 profile2;  
+	public Candidate_ProfilePage1_About profile;  
+	public Candidate_profilePage2_IDandEdu profile2;  
 	public Candidate_Availability_Page Availability;  
 	public Expert_Schedule_Page Schedule;
 	public ACS_Page ACS;
@@ -52,7 +52,7 @@ public class Error_state extends Baseclass
 	  public void Max_Decline_from_Candidateside_and__CardDisplay() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
-		  profile = new Candidate_ProfilePage(driver);
+		  profile = new Candidate_ProfilePage1_About(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Schedule= new Expert_Schedule_Page(driver);
 		  softAssert = new SoftAssert();
@@ -97,7 +97,7 @@ public class Error_state extends Baseclass
 	  public void Declined_from_Expertside() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
-		  profile = new Candidate_ProfilePage(driver);
+		  profile = new Candidate_ProfilePage1_About(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Schedule= new Expert_Schedule_Page(driver);
 		  softAssert = new SoftAssert();
@@ -122,7 +122,7 @@ public class Error_state extends Baseclass
 	  public void Absent() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
-		  profile = new Candidate_ProfilePage(driver);
+		  profile = new Candidate_ProfilePage1_About(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Schedule= new Expert_Schedule_Page(driver);
 		  ACS = new ACS_Page(driver);
@@ -162,7 +162,7 @@ public class Error_state extends Baseclass
 	  public void Network_Error() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
-		  profile = new Candidate_ProfilePage(driver);
+		  profile = new Candidate_ProfilePage1_About(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Schedule= new Expert_Schedule_Page(driver);
 		  ACS = new ACS_Page(driver);
@@ -207,7 +207,7 @@ public class Error_state extends Baseclass
 	  public void Interview_Status_Not_Provided() throws InterruptedException
 	  {
 		  login = new LoginPage(driver);
-		  profile = new Candidate_ProfilePage(driver);
+		  profile = new Candidate_ProfilePage1_About(driver);
 		  Availability = new Candidate_Availability_Page(driver);	 
 		  Schedule= new Expert_Schedule_Page(driver);
 		  ACS = new ACS_Page(driver);

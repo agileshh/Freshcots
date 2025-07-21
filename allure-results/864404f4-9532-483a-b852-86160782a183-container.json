@@ -1,0 +1,1 @@
+{"uuid":"864404f4-9532-483a-b852-86160782a183","name":"Test.Expert_Schedule.setup","children":["31f044d2-88da-4885-bc66-20f4d755c5c6"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1751434395081,"stop":1751434397366}],"afters":[],"start":1751434395081,"stop":1751434397366}

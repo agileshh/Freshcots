@@ -1,0 +1,1 @@
+{"uuid":"93bba9ed-af99-45ea-b261-b6a2a45cd4a7","name":"Test.Candidate_Profile.setup","children":["5d0fd9ca-c56c-456d-930c-e3f9f6daf03a"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1751624759833,"stop":1751624770696}],"afters":[],"start":1751624759832,"stop":1751624770696}

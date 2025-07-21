@@ -21,32 +21,25 @@ public class Candidate_Availability_Page
 	   WebDriver driver;
 	   
 	   //Annotation
-	   @FindBy(xpath = "//button[normalize-space()='Click Here']")
-	   WebElement HR_Navigation_Page;
+	   @FindBy(xpath = "//button[normalize-space()='Click Here']") WebElement HR_Navigation_Page;
 	   
-	   @FindBy(xpath = "//span[normalize-space()='Interview']")
-	   WebElement InterviewDD_Page;
+	   @FindBy(xpath = "//span[normalize-space()='Interview']")	   WebElement InterviewDD_Page;
 	   
-	   @FindBy(xpath = "//span[normalize-space()='HR']")
-	   WebElement HR_Tab_Page;
+	   @FindBy(xpath = "//span[normalize-space()='HR']")    	   WebElement HR_Tab_Page;
 	   
-	   @FindBy(xpath = "//span[normalize-space()='Technical']")
-	   WebElement Tech_Tab_Page;
+	   @FindBy(xpath = "//span[normalize-space()='Technical']")	   WebElement Tech_Tab_Page;
 	   
-	   @FindBy(xpath = "//button[normalize-space()='Request Interview']")
-	   WebElement RequestInterviewbutton_Page;
+	   @FindBy(xpath = "//button[normalize-space()='Request Interview']")	   WebElement RequestInterviewbutton_Page;
 	   
-	   @FindBy(xpath = "//button[normalize-space()='Request Again']")
-	   WebElement RequestAgainbutton_Page;
+	   @FindBy(xpath = "//button[normalize-space()='Request Again']")	   WebElement RequestAgainbutton_Page;
 	      
-	   @FindBy(xpath = "//*[@class  = 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1qj2z7j']")
+	   @FindBy(xpath = "//*[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1qj2z7j']")	   
 	   WebElement Confirmbutton_Page;
 	   
-	   @FindBy(xpath = "MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1qj2z7j")
+	   @FindBy(xpath = "MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1qj2z7j")	   
 	   WebElement Cancelbutton_Page;
 	   
-	   @FindBy(xpath = "(//td[@class = 'MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1498stf'])[2]")
-	   WebElement SelctSlot1_Page;
+	   @FindBy(xpath = "(//td[@class = 'MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1498stf'])[2]")	   WebElement SelctSlot1_Page;
 	   
 	   @FindBy(xpath = "(//td[@class = 'MuiTableCell-root MuiTableCell-body MuiTableCell-alignCenter MuiTableCell-sizeMedium css-1498stf'])[3]")
 	   WebElement SelctSlot2_Page;
@@ -54,8 +47,7 @@ public class Candidate_Availability_Page
 	   @FindBy(xpath = "//th[@class='MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignCenter MuiTableCell-sizeMedium css-5zhpm4']//input[@type='checkbox']")
 	   WebElement Morningsession_SelectAll_page;
 	   
-	   @FindBy(xpath = "(//input[@class='PrivateSwitchBase-input css-j8yymo'])[2]")
-	   WebElement Afternoonsession_SelectAll_page;
+	   @FindBy(xpath = "(//input[@class='PrivateSwitchBase-input css-j8yymo'])[2]")	   WebElement Afternoonsession_SelectAll_page;
 	   
 	   @FindBy(xpath = "(//input[@class='PrivateSwitchBase-input css-j8yymo'])[3]")
 	   WebElement Eveningsession_SelectAll_page;
@@ -66,8 +58,7 @@ public class Candidate_Availability_Page
 	   @FindBy(xpath = "//*[@class = 'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedInherit MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorInherit MuiButton-root MuiButton-outlined MuiButton-outlinedInherit MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-colorInherit css-ep6j51']")
 	   WebElement Cancel_button_page;
 	   
-	   @FindBy(xpath = "//*[@class= 'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-xz9haa']")
-	   WebElement CancelIcon__page;
+	   @FindBy(xpath = "//*[@class= 'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-xz9haa']")  WebElement CancelIcon__page;
 	   
 	   @FindBy(xpath = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError MuiButton-root MuiButton-contained MuiButton-containedError MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorError css-bmstu9']")
 	   WebElement CancelIcon_button__page;
@@ -84,29 +75,22 @@ public class Candidate_Availability_Page
 	   @FindBy(xpath = "//*[@class = 'MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1w263no']")
 	   WebElement Tech_tabNavigation_page;
 	   
-	   @FindBy(xpath = "//p[@class = 'MuiTypography-root MuiTypography-body2 css-1i2s3q0']")
-	   WebElement Validate_Message_page;
+	   @FindBy(xpath = "//p[@class = 'MuiTypography-root MuiTypography-body2 css-1i2s3q0']")   WebElement Validate_Message_page;
 	   
-	   @FindBy(xpath = "(//*[normalize-space() = 'Decline'])[1]")
-	   WebElement Decline_button_page;
+	   @FindBy(xpath = "(//*[normalize-space() = 'Decline'])[1]")   WebElement Decline_button_page;
 	   
-	   @FindBy(xpath = "//*[@placeholder = 'Type here']")
-	   WebElement Decline_reason_page;
+	   @FindBy(xpath = "//*[@placeholder = 'Type here']")   WebElement Decline_reason_page;
 	   
-	   @FindBy(xpath = "(//*[normalize-space() = 'Decline'])[3]")
-	   WebElement Decline_button_popup_page;
+	   @FindBy(xpath = "(//*[normalize-space() = 'Decline'])[3]")   WebElement Decline_button_popup_page;
 	   
 	   @FindBy(xpath = "//*[@class= 'MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-195hrdw']")
 	   WebElement Request_button_Disabledbutton_page;
 	   
-	   @FindBy(xpath = "//*[text() = 'Your account has been blocked due to multiple attempts kindly contact our admin']")
-	   WebElement Request_Disabledbutton_textverify;
+	   @FindBy(xpath = "//*[text() = 'Your account has been blocked due to multiple attempts kindly contact our admin']")  WebElement Request_Disabledbutton_textverify;
 	   
-	   @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-afpww']")
-	   WebElement InfoMessage_Expert_Decline;
+	   @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-afpww']")   WebElement InfoMessage_Expert_Decline;
 	   
-	   @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-43etnu']")
-	   WebElement Under_Review_Text;
+	   @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-43etnu']")  WebElement Under_Review_Text;
 	   
 	   //Constructor
 	   public Candidate_Availability_Page(WebDriver driver)
@@ -135,6 +119,7 @@ public class Candidate_Availability_Page
 	   {
 		   Generic.Click(Tech_Tab_Page, 10);
 	   }
+	   
 	   public void RequestInterviewbutton()
 	   {
 		   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
